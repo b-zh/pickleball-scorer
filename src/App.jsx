@@ -23,7 +23,7 @@ const createInitialState = (firstServingTeam) => ({
   usScore: 0,
   opponentScore: 0,
   servingTeam: firstServingTeam, // 'us' or 'opponent'
-  serverNumber: 2, // Opening serve of the game is always Server 2
+  serverNumber: 2, // Opening serve is always Server 2
   isGameOver: false,
 });
 
@@ -109,19 +109,19 @@ export default function App() {
 
     if (!gameStarted) {
       return (
-        <div className="h-screen w-screen bg-black text-slate-100 p-2 flex flex-col justify-center items-center select-none overflow-hidden touch-manipulation">
-          <div className="w-full text-center space-y-1.5">
-            <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">Start Serve</div>
+        <div className="h-screen w-screen bg-slate-900 text-slate-100 p-2 flex flex-col justify-center items-center select-none overflow-hidden touch-manipulation">
+          <div className="w-full text-center space-y-2">
+            <div className="text-xs font-black text-slate-400 uppercase tracking-wider">Start Serve</div>
             <div className="grid grid-cols-2 gap-2">
               <button
                 onClick={() => handleStartGame('us')}
-                className="py-2.5 bg-amber-500 active:scale-95 transition-transform rounded-lg text-xs font-black text-slate-950"
+                className="py-3.5 bg-amber-500 hover:bg-amber-400 active:scale-95 transition-transform rounded-xl text-sm font-black text-slate-950 shadow"
               >
                 Us
               </button>
               <button
                 onClick={() => handleStartGame('opponent')}
-                className="py-2.5 bg-slate-800 active:scale-95 border border-slate-700 transition-transform rounded-lg text-xs font-black text-slate-200"
+                className="py-3.5 bg-slate-800 hover:bg-slate-700 active:scale-95 border border-slate-700 transition-transform rounded-xl text-sm font-black text-slate-200 shadow"
               >
                 Opp
               </button>
@@ -132,59 +132,62 @@ export default function App() {
     }
 
     return (
-      <div className="h-screen w-screen bg-black text-slate-100 p-1.5 flex flex-col justify-between select-none overflow-hidden touch-manipulation">
-        <div className="w-full flex justify-between items-center shrink-0 px-1">
-          <button
-            onClick={handleUndo}
-            disabled={history.length <= 1}
-            className="text-[10px] font-bold text-slate-400 active:text-slate-200 disabled:opacity-20"
-          >
-            ↩ Undo
-          </button>
-          <button
-            onClick={handleReset}
-            className="text-[10px] font-bold text-rose-400 active:text-rose-300"
-          >
-            Reset
-          </button>
-        </div>
-
+      <div className="h-screen w-screen bg-slate-900 text-slate-100 px-2 py-1 flex flex-col justify-between select-none overflow-hidden touch-manipulation">
         {current.isGameOver ? (
-          <div className="flex-1 flex flex-col items-center justify-center text-center">
-            <span className="text-emerald-400 text-[10px] font-black uppercase">Game Over</span>
-            <div className="text-base font-black text-white">
+          <div className="flex-1 flex flex-col items-center justify-center text-center space-y-1.5 my-auto bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-2 w-full">
+            <span className="text-emerald-400 text-[10px] font-black uppercase tracking-wider">Game Over</span>
+            <div className="text-lg font-black text-white">
               {current.usScore > current.opponentScore ? 'We Won!' : 'Opp Won!'}
             </div>
             <div className="text-xs font-mono text-slate-300">
-              {current.usScore} - {current.opponentScore}
+              Final: {current.usScore} - {current.opponentScore}
             </div>
+            <button
+              onClick={handleReset}
+              className="text-xs font-semibold text-rose-400 border border-rose-900/60 px-3 py-1 rounded-lg hover:bg-rose-950/40 active:scale-95 transition-all mt-1"
+            >
+              Reset Game
+            </button>
           </div>
         ) : (
-          <div className="flex-1 flex items-center justify-between gap-2 px-1">
-            <div className="flex flex-col items-center justify-center">
-              <div className="font-mono font-black text-2xl text-amber-400 tracking-tight leading-none">
-                {servingScore}-{receivingScore}-{current.serverNumber}
+          <>
+            {/* Top: Score & Indicator */}
+            <div className="flex flex-col items-center justify-center pt-0.5 shrink-0">
+              <div className="font-mono font-black text-3xl text-amber-400 tracking-tight leading-tight">
+                {servingScore} - {receivingScore} - {current.serverNumber}
               </div>
-              <div className="text-[8px] font-bold uppercase tracking-widest text-slate-400 mt-1">
-                {servingTeamLabel} v {receivingTeamLabel} (S{current.serverNumber})
+              <div className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400">
+                {servingTeamLabel} Serving (S{current.serverNumber})
               </div>
             </div>
 
-            <div className="flex flex-col gap-1.5 w-24">
+            {/* Middle: Big Tap Target Buttons */}
+            <div className="grid grid-cols-2 gap-2 my-auto w-full">
               <button
                 onClick={handlePointWon}
-                className="py-2 bg-emerald-600 active:bg-emerald-500 active:scale-95 transition-all rounded-lg text-xs font-black text-white text-center shadow"
+                className="h-14 bg-emerald-600 hover:bg-emerald-500 active:scale-95 transition-all rounded-xl text-sm font-bold text-white flex items-center justify-center shadow-lg"
               >
-                +1 Point
+                Point Won
               </button>
               <button
                 onClick={handleFault}
-                className="py-2 bg-slate-800 active:bg-slate-700 active:scale-95 border border-slate-700 transition-all rounded-lg text-xs font-black text-slate-200 text-center shadow"
+                className="h-14 bg-slate-800 hover:bg-slate-700 active:scale-95 border border-slate-700 transition-all rounded-xl text-sm font-bold text-slate-200 flex items-center justify-center shadow-lg"
               >
                 Fault
               </button>
             </div>
-          </div>
+
+            {/* Bottom: Undo Button */}
+            <div className="shrink-0 pb-0.5 w-full text-center">
+              <button
+                onClick={handleUndo}
+                disabled={history.length <= 1}
+                className="w-full py-1 text-xs font-semibold text-slate-400 hover:text-slate-200 disabled:opacity-20 transition-colors"
+              >
+                Undo Last Rally
+              </button>
+            </div>
+          </>
         )}
       </div>
     );
