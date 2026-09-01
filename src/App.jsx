@@ -109,24 +109,32 @@ export default function App() {
 
     if (!gameStarted) {
       return (
-        <div className="h-screen w-screen bg-slate-900 text-slate-100 p-2.5 flex flex-col justify-center items-center select-none overflow-hidden touch-manipulation">
-          <div className="w-full text-center space-y-2">
-            <div className="text-sm font-black text-slate-300 uppercase tracking-wider">Start Serve</div>
-            <div className="grid grid-cols-2 gap-2.5">
-              <button
-                onClick={() => handleStartGame('us')}
-                className="py-4 bg-amber-500 hover:bg-amber-400 active:scale-95 transition-transform rounded-2xl text-base font-black text-slate-950 shadow-lg"
-              >
-                Us
-              </button>
-              <button
-                onClick={() => handleStartGame('opponent')}
-                className="py-4 bg-slate-800 hover:bg-slate-700 active:scale-95 border border-slate-700 transition-transform rounded-2xl text-base font-black text-slate-200 shadow-lg"
-              >
-                Opp
-              </button>
-            </div>
+        <div className="h-screen w-screen bg-slate-900 text-slate-100 px-2 py-1.5 flex flex-col justify-between items-center select-none overflow-hidden touch-manipulation">
+          {/* Top Title */}
+          <div className="text-[11px] font-black text-slate-400 uppercase tracking-wider pt-0.5 shrink-0">
+            Start Serve
           </div>
+
+          {/* Serve Selection Buttons */}
+          <div className="grid grid-cols-2 gap-2 w-full my-auto">
+            <button
+              onClick={() => handleStartGame('us')}
+              className="py-3 bg-amber-500 hover:bg-amber-400 active:scale-95 transition-transform rounded-xl text-sm font-black text-slate-950 shadow-md"
+            >
+              Us
+            </button>
+            <button
+              onClick={() => handleStartGame('opponent')}
+              className="py-3 bg-slate-800 hover:bg-slate-700 active:scale-95 border border-slate-700 transition-transform rounded-xl text-sm font-black text-slate-200 shadow-md"
+            >
+              Opp
+            </button>
+          </div>
+
+          {/* Watch Micro-Attribution */}
+          <footer className="text-[9px] font-medium text-slate-500 pb-0.5 shrink-0">
+            Made by <span className="text-amber-400/90 font-bold">b-zh</span>
+          </footer>
         </div>
       );
     }
@@ -151,7 +159,7 @@ export default function App() {
           </div>
         ) : (
           <>
-            {/* Top: Score & Indicator (Scaled up for fast scanning) */}
+            {/* Top: Score & Indicator */}
             <div className="flex flex-col items-center justify-center shrink-0 pt-0.5">
               <div className="font-mono font-black text-4xl text-amber-400 tracking-tight leading-none">
                 {servingScore} - {receivingScore} - {current.serverNumber}
@@ -165,13 +173,13 @@ export default function App() {
             <div className="grid grid-cols-2 gap-2 my-1.5 w-full flex-1 min-h-0">
               <button
                 onClick={handlePointWon}
-                className="h-full min-h-[64px] bg-emerald-600 hover:bg-emerald-500 active:scale-95 transition-all rounded-2xl text-base font-black text-white flex items-center justify-center shadow-lg"
+                className="h-full min-h-16 bg-emerald-600 hover:bg-emerald-500 active:scale-95 transition-all rounded-2xl text-base font-black text-white flex items-center justify-center shadow-lg"
               >
                 Point Won
               </button>
               <button
                 onClick={handleFault}
-                className="h-full min-h-[64px] bg-slate-800 hover:bg-slate-700 active:scale-95 border border-slate-700 transition-all rounded-2xl text-base font-black text-slate-200 flex items-center justify-center shadow-lg"
+                className="h-full min-h-16 bg-slate-800 hover:bg-slate-700 active:scale-95 border border-slate-700 transition-all rounded-2xl text-base font-black text-slate-200 flex items-center justify-center shadow-lg"
               >
                 Fault
               </button>
@@ -201,7 +209,9 @@ export default function App() {
 
   if (!gameStarted) {
     return (
-      <div className="h-dvh w-full bg-slate-900 text-slate-100 p-6 flex flex-col justify-center items-center select-none overflow-hidden max-w-md mx-auto">
+      <div className="h-dvh w-full bg-slate-900 text-slate-100 px-6 py-6 flex flex-col justify-between items-center select-none overflow-hidden max-w-md mx-auto">
+        <div className="h-4 shrink-0" />
+
         <div className="w-full text-center space-y-6">
           <div>
             <h1 className="text-3xl font-black tracking-tight text-white uppercase">New Match</h1>
@@ -223,6 +233,19 @@ export default function App() {
             </button>
           </div>
         </div>
+
+        {/* Phone / Desktop Attribution Footer */}
+        <footer className="text-center text-xs text-slate-500 shrink-0 pb-1">
+          Made by{' '}
+          <a
+            href="https://github.com/b-zh"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-amber-400/90 font-medium hover:text-amber-300 hover:underline transition-colors"
+          >
+            b-zh
+          </a>
+        </footer>
       </div>
     );
   }
