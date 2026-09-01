@@ -2,6 +2,8 @@
 
 A fast, lightweight, and offline-ready doubles pickleball scorekeeper built with React, Vite, and Tailwind CSS. Designed specifically for instant score tracking with dual responsive layouts optimized for both **mobile phones** and **Apple Watch**.
 
+Built by me with lots of help from Gemini
+
 ---
 
 ## ✨ Features
