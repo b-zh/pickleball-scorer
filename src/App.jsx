@@ -109,29 +109,29 @@ export default function App() {
 
     if (!gameStarted) {
       return (
-        <div className="h-screen w-screen bg-slate-900 text-slate-100 px-2 py-1.5 flex flex-col justify-between items-center select-none overflow-hidden touch-manipulation">
+        <div className="h-screen w-screen bg-slate-900 text-slate-100 px-2 py-1 flex flex-col justify-between items-center select-none overflow-hidden touch-manipulation">
           {/* Top Title */}
-          <div className="text-[11px] font-black text-slate-400 uppercase tracking-wider pt-0.5 shrink-0">
+          <div className="text-[18px] font-black text-slate-400 uppercase tracking-wider shrink-0">
             Start Serve
           </div>
 
-          {/* Serve Selection Buttons */}
-          <div className="grid grid-cols-2 gap-2 w-full my-auto">
+          {/* Extra-Large Serve Selection Buttons */}
+          <div className="grid grid-cols-2 gap-2 w-full flex-1 my-1.5 min-h-0">
             <button
               onClick={() => handleStartGame('us')}
-              className="py-3 bg-amber-500 hover:bg-amber-400 active:scale-95 transition-transform rounded-xl text-sm font-black text-slate-950 shadow-md"
+              className="h-full min-h-18 bg-amber-500 hover:bg-amber-400 active:scale-95 transition-transform rounded-2xl text-xl font-black text-slate-950 flex items-center justify-center shadow-lg"
             >
               Us
             </button>
             <button
               onClick={() => handleStartGame('opponent')}
-              className="py-3 bg-slate-800 hover:bg-slate-700 active:scale-95 border border-slate-700 transition-transform rounded-xl text-sm font-black text-slate-200 shadow-md"
+              className="h-full min-h-18 bg-slate-800 hover:bg-slate-700 active:scale-95 border border-slate-700 transition-transform rounded-2xl text-xl font-black text-slate-200 flex items-center justify-center shadow-lg"
             >
               Opp
             </button>
           </div>
 
-          {/* Watch Micro-Attribution */}
+          {/* Micro Attribution */}
           <footer className="text-[9px] font-medium text-slate-500 pb-0.5 shrink-0">
             Made by <span className="text-amber-400/90 font-bold">b-zh</span>
           </footer>
@@ -140,7 +140,7 @@ export default function App() {
     }
 
     return (
-      <div className="h-screen w-screen bg-slate-900 text-slate-100 px-2 pt-1 pb-1.5 flex flex-col justify-between select-none overflow-hidden touch-manipulation">
+      <div className="h-screen w-screen bg-slate-900 text-slate-100 px-2 pt-0.5 pb-1 flex flex-col justify-between select-none overflow-hidden touch-manipulation">
         {current.isGameOver ? (
           <div className="flex-1 flex flex-col items-center justify-center text-center space-y-1.5 my-auto bg-emerald-500/10 border border-emerald-500/30 rounded-2xl p-2.5 w-full">
             <span className="text-emerald-400 text-xs font-black uppercase tracking-wider">Game Over</span>
@@ -159,38 +159,38 @@ export default function App() {
           </div>
         ) : (
           <>
-            {/* Top: Score & Indicator */}
-            <div className="flex flex-col items-center justify-center shrink-0 pt-0.5">
-              <div className="font-mono font-black text-4xl text-amber-400 tracking-tight leading-none">
+            {/* Top: Bigger Score & Indicator */}
+            <div className="flex flex-col items-center justify-center shrink-0">
+              <div className="font-mono font-black text-5xl text-amber-400 tracking-tight leading-none">
                 {servingScore} - {receivingScore} - {current.serverNumber}
               </div>
-              <div className="text-xs font-black uppercase tracking-wider text-slate-300 mt-0.5">
+              <div className="text-[12px] font-black uppercase tracking-wider text-slate-300 mt-0.5">
                 {servingTeamLabel} Serving (S{current.serverNumber})
               </div>
             </div>
 
-            {/* Middle: Extra-Tall High-Target Buttons */}
-            <div className="grid grid-cols-2 gap-2 my-1.5 w-full flex-1 min-h-0">
+            {/* Middle: Extra-Tall Action Buttons */}
+            <div className="grid grid-cols-2 gap-2 my-1 w-full flex-1 min-h-0">
               <button
                 onClick={handlePointWon}
-                className="h-full min-h-16 bg-emerald-600 hover:bg-emerald-500 active:scale-95 transition-all rounded-2xl text-base font-black text-white flex items-center justify-center shadow-lg"
+                className="h-full min-h-15 bg-emerald-600 hover:bg-emerald-500 active:scale-95 transition-all rounded-2xl text-base font-black text-white flex items-center justify-center shadow-lg"
               >
                 Point Won
               </button>
               <button
                 onClick={handleFault}
-                className="h-full min-h-16 bg-slate-800 hover:bg-slate-700 active:scale-95 border border-slate-700 transition-all rounded-2xl text-base font-black text-slate-200 flex items-center justify-center shadow-lg"
+                className="h-full min-h-15 bg-slate-800 hover:bg-slate-700 active:scale-95 border border-slate-700 transition-all rounded-2xl text-base font-black text-slate-200 flex items-center justify-center shadow-lg"
               >
                 Fault
               </button>
             </div>
 
-            {/* Bottom: Clean Text Undo Link */}
+            {/* Bottom: Undo Link */}
             <div className="shrink-0 w-full text-center">
               <button
                 onClick={handleUndo}
                 disabled={history.length <= 1}
-                className="w-full py-1 text-xs font-bold text-slate-400 hover:text-slate-200 disabled:opacity-20 transition-colors"
+                className="w-full py-0.5 text-xs font-bold text-slate-400 hover:text-slate-200 disabled:opacity-20 transition-colors"
               >
                 Undo Last Rally
               </button>
@@ -223,7 +223,7 @@ export default function App() {
               onClick={() => handleStartGame('us')}
               className="w-full py-5 bg-amber-500 hover:bg-amber-400 active:scale-[0.98] transition-all rounded-2xl text-xl font-bold text-slate-950 shadow-lg"
             >
-              We Serve First (Us)
+              We Serve First
             </button>
             <button
               onClick={() => handleStartGame('opponent')}
@@ -234,7 +234,7 @@ export default function App() {
           </div>
         </div>
 
-        {/* Phone / Desktop Attribution Footer */}
+        {/* Phone Attribution */}
         <footer className="text-center text-xs text-slate-500 shrink-0 pb-1">
           Made by{' '}
           <a
