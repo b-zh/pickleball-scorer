@@ -2,8 +2,6 @@
 
 A fast, lightweight, and offline-ready doubles pickleball scorekeeper built with React, Vite, and Tailwind CSS. Designed specifically for instant score tracking with dual responsive layouts optimized for both **mobile phones** and **Apple Watch**.
 
-Built by me with lots of help from Gemini
-
 ---
 
 ## ✨ Features
@@ -37,5 +35,41 @@ Built by me with lots of help from Gemini
 
 1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/b-zh/pickleball-scorer.git](https://github.com/b-zh/pickleball-scorer.git)
+   git clone [https://github.com/YOUR_USERNAME/pickleball-scorer.git](https://github.com/YOUR_USERNAME/pickleball-scorer.git)
    cd pickleball-scorer
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Start local development server:**
+   ```bash
+   npm run dev
+   ```
+
+4. **Build for production:**
+   ```bash
+   npm run build
+   ```
+
+---
+
+## 📱 How to Use on Apple Watch & iPhone
+
+### iPhone (Home Screen PWA)
+1. Open your deployed live URL in **Safari**.
+2. Tap the **Share** button (box with upward arrow).
+3. Select **"Add to Home Screen"**.
+4. Launch directly from your home screen for full-screen, offline court scoring.
+
+### Apple Watch
+1. Open the **Shortcuts** app on your iPhone.
+2. Create a new shortcut with the action: **"Open URL"** -> paste your live Vercel URL.
+3. In shortcut details, enable **"Show on Apple Watch"**.
+4. Launch the shortcut directly from your watch or set it as a watch face complication.
+
+---
+
+Built by me with lots of help from Gemini (including this readme).
